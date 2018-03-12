@@ -1,0 +1,39 @@
+{
+    "name": "bruno/projeto",
+    "description": "XXX",
+    "authors": [
+        {
+            "name": "Bruno Borges",
+            "email": "bruno@iborges.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "*",
+        "phpmd/phpmd": "*",
+        "squizlabs/php_codesniffer": "*",
+        "sebastian/phpcpd": "^3.0",
+        "phpunit/php-code-coverage": "*"
+    },
+    "scripts": {
+        "tests": "./vendor/bin/phpunit --whitelist src/ --coverage-html=reports --coverage-clover 'reports/coverage.xml' tests",
+        "full-code-review": [
+            "@code-sniffer",
+            "@mess-detector",
+            "@check-duplicate-code"
+        ],
+        "code-sniffer": "./vendor/bin/phpcs --colors --standard=PSR2 src/",
+        "mess-detector": "./vendor/bin/phpmd src/ text codesize,cleancode,unusedcode,naming,controversial,design --ignore-violations-on-exit",
+        "check-duplicate-code": "./vendor/bin/phpcpd src/",
+        "fix-code": "./vendor/bin/phpcbf --standard=PSR2 src/"
+    },
+    "autoload": {
+        "psr-4": {
+            "SampleApplication\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "~6.0",
+        "predis/predis": "^1.1",
+        "joshtronic/php-holidayapi": "dev-master"
+    }
+}
